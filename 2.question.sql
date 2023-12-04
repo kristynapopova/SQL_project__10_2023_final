@@ -9,7 +9,7 @@ SELECT
 	category_code,
 	cena,
 	množství,
-	round((AVG (DISTINCT hruba_mzda)) / cena) * množství,
+	round((AVG (DISTINCT hruba_mzda)) / cena) * množství AS mozne_koupit,
 	jednotky
 FROM
 	t_kristyna_popova_project_sql_primary_final tkppspf
@@ -20,9 +20,6 @@ GROUP BY
 	category_code,
 	odvětví,
 	payroll_year;
-
-
-
 
 
 

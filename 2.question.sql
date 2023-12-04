@@ -2,14 +2,10 @@
 -- Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
 
 SELECT
-	round(AVG (DISTINCT hruba_mzda), 0),
 	odvětví,
-	payroll_year,
+	payroll_year AS srovnatelné_období,
 	potraviny,
-	category_code,
-	cena,
-	množství,
-	round((AVG (DISTINCT hruba_mzda)) / cena) * množství AS mozne_koupit,
+	round((AVG (DISTINCT hruba_mzda)) / cena) AS mozno_koupit,
 	jednotky
 FROM
 	t_kristyna_popova_project_sql_primary_final tkppspf
@@ -20,7 +16,6 @@ GROUP BY
 	category_code,
 	odvětví,
 	payroll_year;
-
 
 
 

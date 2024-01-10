@@ -1,20 +1,21 @@
 
 -- Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
- 
+
+
 SELECT
-	potraviny,
-	roky,
-	cena,
-	LAG(cena) OVER(
-	ORDER BY roky ) AS predchozi_radek,
-	round( ( cena - LAG(cena) OVER(ORDER BY roky ) ) / LAG(cena) OVER(ORDER BY roky ) * 100, 2 ) AS procentuální_nárůst
+	food_category,
+	date,
+	price,
+	LAG(price) OVER(
+	ORDER BY date) AS previous_row,
+	ROUND((price - LAG(price) OVER(ORDER BY date)) / LAG(price) OVER(ORDER BY date) * 100, 2) AS percentual_growth
 FROM
 	t_kristyna_popova_project_sql_primary_final tkppspf
 WHERE category_code = 111301
 GROUP BY
-	roky	
+	date
 ORDER BY
-	procentuální_nárůst ASC;
+	percentual_growth ASC;
 
 
 

@@ -4,7 +4,7 @@
 
 SELECT
 	gross_wage,
-	industry ,
+	industry,
 	payroll_year
 FROM
 	t_kristyna_popova_project_sql_primary_final tab1

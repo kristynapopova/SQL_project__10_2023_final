@@ -2,7 +2,7 @@
 
 CREATE VIEW czechia_payroll_edit AS
 SELECT
-	round(avg(cp1.value), 2) AS gross_wage,
+	ROUND(AVG(cp1.value), 2) AS gross_wage,
 	cp1.value_type_code,
 	cp1.industry_branch_code,
 	cp1.payroll_year,

@@ -19,7 +19,7 @@ WHERE
 		continent = 'EUROPE')	
 AND e.year BETWEEN 2006 AND 2018		
 AND e.gdp IS NOT NULL
-AND gini IS NOT NULL ;		
+AND gini IS NOT NULL;		
 		
 
 

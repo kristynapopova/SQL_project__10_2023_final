@@ -4,52 +4,19 @@
 
 SELECT
 	payroll_year,
-	round (avg (hruba_mzda),2) AS průměrná_hrubá_mzda,
-	LAG(avg (hruba_mzda)) OVER(
+	ROUND(AVG(gross_wage),2) AS average_gross_wage,
+	LAG(AVG(gross_wage)) OVER(
 	ORDER BY
-	payroll_year ) AS predchozi_radek,
-	round( ( avg (hruba_mzda) - LAG(avg (hruba_mzda)) OVER(ORDER BY payroll_year ) ) / LAG(avg (hruba_mzda)) OVER(ORDER BY payroll_year ) * 100, 2 ) AS procentuální_nárůst_mezd,
-	round (avg(cena),2)  AS průměrná_cena_potravin,
-	LAG(avg(cena)) OVER(
+	payroll_year) AS previous_row_wage,
+	ROUND((AVG(gross_wage) - LAG(AVG(gross_wage)) OVER(ORDER BY payroll_year)) / LAG(AVG(gross_wage)) OVER(ORDER BY payroll_year) * 100, 2) AS wage_percentual_growth,
+	ROUND(AVG(price),2)  AS average_food_price,
+	LAG(AVG(price)) OVER(
 	ORDER BY
-	payroll_year ) AS predchozi_radek,
-	round( (avg(cena)- LAG(avg (cena)) OVER(ORDER BY payroll_year ) ) / LAG(avg (cena)) OVER(ORDER BY payroll_year ) * 100, 2 ) AS procentuální_nárůst_potravin,
-    round( ( avg (hruba_mzda) - LAG(avg (hruba_mzda)) OVER(ORDER BY payroll_year ) ) / LAG(avg (hruba_mzda)) OVER(ORDER BY payroll_year ) * 100, 2 ) - round( (avg(cena)- LAG(avg (cena)) OVER(ORDER BY payroll_year ) ) / LAG(avg (cena)) OVER(ORDER BY payroll_year ) * 100, 2 ) AS meziroční_rozdíl_v_nárůstu_mezd_a_potravin
+	payroll_year) AS previous_row_price,
+	ROUND((AVG(price)- LAG(AVG(price)) OVER(ORDER BY payroll_year)) / LAG(AVG(price)) OVER(ORDER BY payroll_year) * 100, 2) AS food_percentual_growth,
+    ROUND((AVG(gross_wage) - LAG(AVG(gross_wage)) OVER(ORDER BY payroll_year)) / LAG(AVG(gross_wage)) OVER(ORDER BY payroll_year) * 100, 2) - ROUND((AVG(price)- LAG(AVG(price)) OVER(ORDER BY payroll_year)) / LAG(avg(price)) OVER(ORDER BY payroll_year) * 100, 2) AS wage_food_percent_growth_diff_
 FROM
 	t_kristyna_popova_project_sql_primary_final tkppspf
 GROUP BY
 	payroll_year;
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

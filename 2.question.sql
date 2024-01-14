@@ -1,10 +1,10 @@
 
--- Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
+-- Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd? (všechny odvětví dohromady )
 
 SELECT
 	payroll_year AS period_comparison,
 	food_category,
-	ROUND((SUM(DISTINCT gross_wage)) / price) AS can_be_bought,
+	ROUND((AVG(DISTINCT gross_wage)) / price) AS can_be_bought,
 	units
 FROM
 	t_kristyna_popova_project_sql_primary_final tkppspf
@@ -14,5 +14,8 @@ WHERE
 GROUP BY
 	category_code,
 	payroll_year;
-	
 
+
+	
+ 
+	
